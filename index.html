@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Fill the Details</h1>
+    <form method="POST" name="google-sheet">
+        <label for="date">Date</label>
+        <input type="text" id="date" name="date" placeholder="date"-->
+      
+        <label for="lname">Present Or Absent</label>
+        <input type="text" id="pa" name="p/a" placeholder="Type p for present and a for absent">
+      
+        <label for="workername">Name of Worker</label>
+        <select id="wname" name="workername">
+          <option value="w1">Worker 1</option>
+          <option value="w2">Worker 2</option>
+          <option value="w3">Worker 3</option>
+        </select>
+      
+        <input type="submit" value="Submit" name="Submit">
+      </form>
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby8oZchj93Xhyu-Wm499OMTH6Z980GCBKNUamiM-X9LusBnaJc8icKMpUMzScUbjwiueQ/exec'
+        const form = document.forms['google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+</body>
+</html>
